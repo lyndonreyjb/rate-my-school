@@ -1,0 +1,56 @@
+<% layout("/layouts/boilerplate") %>
+<link
+  href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css"
+  rel="stylesheet"
+  crossorigin="anonymous" />
+<script
+  src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"
+  crossorigin="anonymous"></script>
+<div id="map" class="w-full h-96"></div>
+<%- include('../partials/flash') %>
+<div class="flex justify-center items-center mt-4 mb-4">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <% for( let school of schools ) { %>
+    <div
+      class="bg-white max-w-md md:max-w-sm sg-white border border-gray-200 rounded-lg shadow md:flex-row">
+      <% if(school.images.length) { %>
+      <!--  -->
+      <img
+        crossorigin="anonymous"
+        class="rounded-t-lg object-cover h-80"
+        src="<%= school.images[0].url %>"
+        alt="img" />
+      <!--  -->
+      <% }else{%>
+      <img
+        crossorigin="anonymous"
+        class="rounded-t-lg object-cover h-96"
+        src="https://plus.unsplash.com/premium_photo-1677567996070-68fa4181775a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80"
+        alt="img" />
+      <% }%>
+      <div class="p-4">
+        <h5
+          class="mb-2 text-lg truncate font-bold tracking-tight text-gray-800">
+          <%= school.title %>
+        </h5>
+        <p class="text-gray-400 mb-2"><%= school.location %></p>
+        <p
+          class="mb-2 font-normal text-gray-700 dark:text-gray-400 line-clamp-3">
+          <%= school.description %>
+        </p>
+        <a
+          href="/schools/<%= school.id %>"
+          class="inline-block bg-amber-500 hover:bg-amber-600 text-white text-base font-bold py-2 mt-5 px-6 rounded">
+          View School
+        </a>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</div>
+
+<script>
+  const mapToken = "<%-process.env.MAPBOX_TOKEN%>";
+  const schools = {features: <%-JSON.stringify(schools)%>}
+</script>
+<script src="/js/cluster-map.js"></script>

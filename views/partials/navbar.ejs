@@ -1,0 +1,97 @@
+<nav class="bg-cyan-600 w-full z-20 top-0 left-0 border-cyan-400">
+  <div
+    class="max-w-screen-4xl flex flex-wrap items-center justify-between mx-auto p-2">
+    <div class="flex items-center">
+      <a href="/">
+        <%- include('../../assets/logo-small.svg') %> <% if (currentUser) { %>
+      </a>
+      <span class="py-2 pl-3 pr-4 text-white font-medium">
+        Hello, <%= currentUser.username %>
+      </span>
+      <% }%>
+    </div>
+
+    <button
+      type="button"
+      id="collapse-navbar"
+      class="inline-flex items-center p-2 ml-3 text-sm rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-cyan-200 dark:text-cyan-200 dark:hover:bg-cyan-300 dark:focus:ring-cyan-300"
+      aria-controls="navbar-default"
+      aria-expanded="false">
+      <span class="sr-only">Open main menu</span>
+      <svg
+        class="w-6 h-6"
+        aria-hidden="true"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          fill-rule="evenodd"
+          d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+          clip-rule="evenodd"></path>
+      </svg>
+    </button>
+    <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+      <ul
+        class="font-medium flex flex-col p-4 md:p-0 mt-4 rounded-lg bg-cyan-400 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-cyan-500 md:dark:bg-cyan-600 dark:border-cyan-400">
+        <!-- Home links-->
+        <li>
+          <a
+            href="/"
+            class="block py-2 pl-3 pr-4 text-cyan-900 rounded hover:bg-cyan-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-white md:dark:hover:text-cyan-300 dark:hover:bg-cyan-400"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a
+            href="/schools"
+            class="block py-2 pl-3 pr-4 text-cyan-900 rounded hover:bg-cyan-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-white md:dark:hover:text-cyan-300 dark:hover:bg-cyan-400"
+            >Schools</a
+          >
+        </li>
+
+        <!-- login logout -->
+        <% if (!currentUser) { %>
+
+        <li>
+          <a
+            href="/login"
+            class="block py-2 pl-3 pr-4 text-cyan-900 rounded hover:bg-cyan-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-white md:dark:hover:text-cyan-300 dark:hover:bg-cyan-400"
+            >Login</a
+          >
+        </li>
+        <li>
+          <a
+            href="/register"
+            class="block py-2 pl-3 pr-4 text-cyan-900 rounded hover:bg-cyan-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-white md:dark:hover:text-cyan-300 dark:hover:bg-cyan-400"
+            >Register</a
+          >
+        </li>
+        <% }else {%>
+        <li>
+          <a
+            href="/schools/new"
+            class="block py-2 pl-3 pr-4 text-cyan-900 rounded hover:bg-cyan-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-white md:dark:hover:text-cyan-300 dark:hover:bg-cyan-400"
+            >New School</a
+          >
+        </li>
+        <li>
+          <a
+            href="/logout"
+            class="block py-2 pl-3 pr-4 text-cyan-900 rounded hover:bg-cyan-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-white md:dark:hover:text-cyan-300 dark:hover:bg-cyan-400"
+            >Logout</a
+          >
+        </li>
+        <% }%>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Tailwind Functionality -->
+<script>
+  const menu = document.getElementById("collapse-navbar");
+  const colMenu = document.getElementById("navbar-default");
+  menu.addEventListener("click", () => {
+    colMenu.classList.toggle("hidden");
+  });
+</script>
