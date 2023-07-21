@@ -8,16 +8,16 @@
   crossorigin="anonymous"></script>
 <div id="map" class="w-full h-96"></div>
 <%- include('../partials/flash') %>
-<div class="flex justify-center items-center mt-4 mb-4">
+<div class="flex justify-center items-center mt-4 mb-4 p-2">
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
     <% for( let school of schools ) { %>
     <div
-      class="bg-white max-w-md md:max-w-sm sg-white border border-gray-200 rounded-lg shadow md:flex-row">
+      class="bg-white max-w-md md:max-w-sm p-2 sg-white border border-gray-200 rounded-lg shadow md:flex-row">
       <% if(school.images.length) { %>
       <!--  -->
       <img
         crossorigin="anonymous"
-        class="rounded-t-lg object-cover h-80"
+        class="rounded-lg object-cover h-80"
         src="<%= school.images[0].url %>"
         alt="img" />
       <!--  -->
